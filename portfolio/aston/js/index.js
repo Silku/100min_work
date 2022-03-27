@@ -126,4 +126,5 @@ let asideMenu = document.querySelector('aside');
 let menuBtn = document.querySelector('.menu_btn');
 menuBtn.onclick = () =>{
     asideMenu.classList.toggle("on")
+    menuBtn.classList.toggle("active")
 }
