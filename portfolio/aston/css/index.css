@@ -520,6 +520,7 @@ section .title_underline{
 }
 .section_3 .left_side{
     position: absolute;
+    
     /* width: 1000px; */
     height: 100%;
     top: 0;
