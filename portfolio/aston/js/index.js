@@ -1,3 +1,8 @@
+// 새로고침시 스크롤 복원안함
+history.scrollRestoration = "manual"
+
+// 휠 전체 기본 이벤트 차단.
+// passive는 이 함수가 작동하는지에 대해 능동적인 감시 수행, false로 두면 감시가 일어나지 않음.
 window.addEventListener("wheel", function(e){
     e.preventDefault();
 },{passive : false});
@@ -7,53 +12,61 @@ var page = 1;
 mHtml.animate({scrollTop : 0}, 1000);
 
 
-
-
 $(window).on("wheel", function(e) {
+    // 스크롤 애니메이팅 중일때 휠 애니메이션 리턴
     if(mHtml.is(":animated")) return;
-    if(e.originalEvent.deltaY > 0) {
+    console.log("PageIdx : " + (page))
     // deltaY > 0 휠을 아래로 스크롤할때 , 
     // deltaY는 마우스휠을 어느방향으로 얼만큼 굴렸는지에 대한 값,
     // 양수이면 아래쪽, 음수이면 위쪽으로 굴린 상태.
+
     if(page == 3){
         let clientWidth = document.documentElement.clientWidth;
         let scrollWidth = document.documentElement.scrollWidth;
         let widthResult = ((clientWidth/scrollWidth)*100)
-        let pageTheeeIdx = 0;
+        // console.log(clientWidth + "클라위드")
+        let wMin = (clientWidth-clientWidth);
+        let wMax = (scrollWidth-clientWidth);
+
+        let pageTheeeScrollIdx = 0;
+        
+        // console.log(wMin)
+        // console.log(wMax)
         $(window).on("wheel", function(e) {
-            // if(mHtml.is(":animated")) return;
+            if(mHtml.is(":animated")) return;
             if(e.originalEvent.deltaY > 0) {
                 section3.style.transition = "2s ease-in-out";
-                section3.style.transform = "translate3d(-" + ((clientWidth/2)-100) + "px, 0, 0)";
-                section3.classList.add("end")
-                if(section3.classList.contains("end")){
-                    $(window).on("wheel", function(e) {
-                        if(e.originalEvent.deltaY > 0) {
-                            console.log(clientWidth)
-                            console.log(scrollWidth)
-                            page == 4;
-                            return true;
-                        }
-                    })
-                }
+                section3.style.transform = "translate3d(-" + wMax + "px, 0, 0)";
+                pageTheeeScrollIdx = clientWidth+wMax;
+                console.log(pageTheeeScrollIdx)
             }else if(e.originalEvent.deltaY < 0) {
-                section3.style.transform = "translate3d(0px, 0, 0)";
-                section3.classList.remove("end")
+                section3.style.transform = "translate3d("+wMin+"px, 0, 0)";
+                // pageTheeeScrollIdx = wMin;
             }
         })
-        return false;
+        return;
     }
 
 
+
+    if(e.originalEvent.deltaY > 0) {
+
     if(page == 7) return;
+    // if(page == 3) return;
     page++;
 
     }else if(e.originalEvent.deltaY < 0) {
     // deltaY < 0 휠을 위로 스크롤할때
         if(page == 1) return;
-        if(page == 3) return;
+        // if(page == 3) return;
         page--;
     }
+
+    pageMove(page);
+    // 페이지 높이만큼 스크롤
+    var posTop =(page-1) * $(window).height();
+    mHtml.animate({scrollTop : posTop});
+
 
     // function pageThreeScrollEvent(page){
     //     if(page==3){
@@ -73,10 +86,6 @@ $(window).on("wheel", function(e) {
     //     }
     // }
 
-    pageMove(page);
-    // 페이지 높이만큼 스크롤
-    var posTop =(page-1) * $(window).height();
-    mHtml.animate({scrollTop : posTop});
 
     
     // console.log(posTop)
@@ -106,14 +115,13 @@ let clientWidth = document.documentElement.clientWidth;
 let scrollWidth = document.documentElement.scrollWidth;
 let html = document.querySelector('html');
 
-console.log(clientWidth)
+console.log("클라 가로 : " + clientWidth)
 html.addEventListener('change', function(){
     console.log("바뀜")
 })
-console.log(scrollWidth)
-console.log(clientHeight)
-console.log(scrollHeight)
-console.log("뭐지")
+console.log("스크롤 가로 : " + scrollWidth)
+console.log("클라 세로 : " + clientHeight)
+console.log("스크롤 세로 : " + scrollHeight)
 
 
 // 사이드 프로그레스바
@@ -173,7 +181,7 @@ console.log("뭐지")
 
 
 
-// 메뉴페이지
+// 메뉴 버튼 페이지
 let asideMenu = document.querySelector('aside');
 let menuBtn = document.querySelector('.menu_btn');
 menuBtn.onclick = () =>{

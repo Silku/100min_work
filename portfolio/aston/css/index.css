@@ -303,6 +303,7 @@ header .gnb_item .btn_login{
 }
 
 aside{
+    display: none;
     position: fixed;
     z-index: 99;
     top: 0;
@@ -321,6 +322,7 @@ aside{
     transform: translateY(-100%);
 }
 aside.on{
+    display: block;
     position: fixed;
     z-index: 99;
     top: 0;
@@ -519,9 +521,7 @@ section .title_underline{
     transform: translate3d(0px, 0px, 0px);
 }
 .section_3 .left_side{
-    position: absolute;
-    
-    /* width: 1000px; */
+    /* position: absolute; */
     height: 100%;
     top: 0;
     left: 0;
@@ -534,10 +534,12 @@ section .title_underline{
 }
 .section_3 .left_side .sentence{
     display: flex;
+    width: 40rem;
     justify-content: flex-start;
     align-items: flex-start;
     flex-flow: column;
-    padding-left: 120px;
+    /* padding-left: 120px; */
+    /* background-color: red; */
 }
 .section_3 .left_side .sentence p{
     
@@ -551,15 +553,27 @@ section .title_underline{
     font-weight: 100;
 }
 .section_3 .right_side{
+    position: relative;
     width: 100%;
-    
+    /* background-color: red; */
 }
-
+.section_3 .item_container{
+    position: absolute;
+    transform: translate(-25%,-50%);
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    /* background-color:rgb(49, 118, 179); */
+    width: 70rem;
+    height: 500px;
+}
 .section_3 .box_item1{
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    position: absolute;
+    /* position: absolute; */
     z-index: 1;
     top: 120px;
     left: 1000px;
@@ -570,8 +584,6 @@ section .title_underline{
     color: rgb(17, 87, 64);
 }
 .section_3 .box_item1 .sentence{
-    /* position: absolute; */
-    /* bottom: 0; */
     width: 100%;
     height: 100%;
     display: flex;
@@ -589,7 +601,7 @@ section .title_underline{
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    position: absolute;
+    /* position: absolute; */
     z-index: 1;
     top: 120px;
     left: 1350px;
@@ -600,8 +612,6 @@ section .title_underline{
     color: rgb(255,255,255);
 }
 .section_3 .box_item2 .sentence{
-    /* position: absolute; */
-    /* bottom: 0; */
     width: 100%;
     height: 100%;
     display: flex;
@@ -619,7 +629,7 @@ section .title_underline{
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    position: absolute;
+    /* position: absolute; */
     z-index: 1;
     top: 120px;
     left: 1700px;
@@ -630,8 +640,6 @@ section .title_underline{
     color: rgb(17, 87, 64);
 }
 .section_3 .box_item3 .sentence{
-    /* position: absolute; */
-    /* bottom: 0; */
     width: 100%;
     height: 100%;
     display: flex;
