@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실전AJAX테스트2</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="dolbomTest.css">
+</head>
+<body>
+<hr>
+<button type="button" onclick="loadArticles()">게시물 생성하기</button>
+<button type="button" onclick="replaceArticles()">게시물 변경</button>
+<table id="list" class="table table-striped">
+    <thead>
+        <tr class="bg-info">
+            <th>제목</th>
+            <th>내용</th>
+            <th>email</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<script>
+
+
+    //테스트 1.  JSON 텍스트 원하는대로불러와보기 (생성)
+    // function loadArticles(){
+
+    //     const xml = new XMLHttpRequest();
+    //     xml.onreadystatechange = function(){
+    //         if(this.readyState === 4){
+    //             const response = JSON.parse(this.responseText);
+
+    //             for(let i = 0; i < response.length; i++)
+    //             loadComments(response[i]);
+    //         }
+
+    //         function loadComments(article){
+    //             const html = `
+    //             <tr>
+    //                 <td>${article.title}</td>
+    //                 <td>${article.body}</td>
+    //                 <td>${article.email}</td>
+    //             </tr>
+    //             `;
+    //             const table = document.querySelector('#list');
+    //             table.insertAdjacentHTML('beforeend',html);
+    //         }
+    //     }
+    //     xml.open('get', 'jsontest2.json', true );
+    //     xml.send();
+    // }
+
+
+
+     //테스트 2.  JSON 텍스트 원하는대로불러와보기 (변경)
+    // function loadArticles(){
+    //     const xml = new XMLHttpRequest();
+
+    //     xml.onreadystatechange = function(){
+    //         if(this.readyState === 4){
+    //             const response = JSON.parse(this.responseText);
+
+    //             for(let i = 0; i < response.length; i++)
+    //             loadComments(response[i]);
+    //         }
+
+    //         function loadComments(article){
+    //             const html = `
+    //             <tr>
+    //                 <td class="title">${article.title}</td>
+    //                 <td class="body">${article.body}</td>
+    //                 <td id="email">${article.email}</td>
+    //             </tr>
+    //             `;
+    //             const table = document.querySelector('#list');
+    //             table.insertAdjacentHTML('beforeend',html);
+    //         }
+    //     }
+    //     xml.open('get', 'jsontest2.json', true );
+    //     xml.send();
+    // }
+
+    // function replaceArticles(){
+    //     document.querySelector('.title').innerHTML="우리가 어떤민족입니까?"
+    //     document.querySelector('.body').innerHTML="백의민족임"
+    //     document.getElementById('email').innerHTML="tang28@100min.co.kr"
+    // }
+
+
+    // 테스트 3. 그냥 변경만
+    function loadArticles(){
+        const xml = new XMLHttpRequest();
+
+        xml.onreadystatechange = function(){
+            if(this.readyState === 4){
+                const response = JSON.parse(this.responseText);
+
+                for(let i = 0; i < response.length; i++)
+                loadComments(response[i]);
+            }
+
+            function loadComments(article){
+                const html = `
+                <tr>
+                    <td class="title">${article.title}</td>
+                    <td class="body">${article.body}</td>
+                    <td id="email">${article.email}</td>
+                </tr>
+                `;
+                const table = document.querySelector('#list');
+                table.insertAdjacentHTML('beforeend',html);
+            }
+        }
+        xml.open('get', 'jsontest2.json', true );
+        xml.send();
+    }
+
+    function replaceArticles(jsontest){
+        const table = document.querySelector('#list');
+        const title = document.querySelector('.title');
+        const body = document.querySelector('.body');
+        const email = document.querySelector('#email');
+        const replace = `
+            <tr>
+                <td class="title">${jsontest.title}</td>
+                <td class="body">${jsontest.body}</td>
+                <td id="email">${jsontest.userId}</td>
+            </tr>
+        `;
+        fetch('jsontest.json')
+        .then(response => response.json())
+        .then(data =>{
+            console.log(data);
+            
+            tableReplace.innerHTML += replace;
+        })
+        // document.querySelector('.title').innerHTML="우리가 어떤민족입니까?"
+        // document.querySelector('.body').innerHTML="백의민족임"
+        // document.getElementById('email').innerHTML="tang28@100min.co.kr"
+    }
+
+
+</script>
+
+
+
+    <!-- 
+        <table class="list">
+		<thead>
+			<tr>
+				<td class="th_time">예정시간</td>
+				<td class="th_name">상세서비스명</td>
+				<td class="th_status">상태</td>
+				<td class="th_detail">상세보기</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><span>10월 1일 </span><br>13시</td>
+				<td name="아동돌봄">아동돌봄</td>
+				<td>예정</td>
+				<td class="detail">
+					<button type="button" class="btn btn-primary" onclick="Change()">
+						상세
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td><span>10월 1일 </span><br>13시</td>
+				<td>아동돌봄</td>
+				<td>예정</td>
+				<td class="detail">
+					<button type="button" class="btn btn-primary" onclick="location.href='app-user-info-detail.html'">
+						상세
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>   -->
+
+</body>
+</html>

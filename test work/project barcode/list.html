@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백의민족 바코드 시스템</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/list.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="container">
+
+        <div class="sidebar">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="바코드 리더기를 인식해 주세요." 
+                        aria-label="Username" aria-describedby="basic-addon1" onChange="load()">
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">순번</th>
+                    <th scope="col">시간</th>
+                    <th scope="col">바코드</th>
+                    <th scope="col">상태</th>
+                    </tr>
+                </thead>
+                <tbody class="table_body">
+                    
+                </tbody>
+            </table>
+        </div>
+        <main>
+
+        </main>
+    </main>
+    <script>
+    function load(){
+        $.ajax({
+        type:'get',
+        url:'https://jsonplaceholder.typicode.com/posts?=2',
+        dataType:'json',
+        success:function(data){
+
+            console.log("성공!");
+            console.log(data);
+            const html = `
+                    <tr>
+                        <th>${data.id}</th>
+                        <td>${data.barcodeId}</td>
+                        <td>${data.status}</td>
+                        <td>${data.title}</td>
+                    </tr>
+                    `;
+                    const table = document.querySelector('.table_body');
+                    table.innerHTML += html;
+
+
+            $.each(data, function(index, item){
+                $(".table_body").append(item.id + " ");
+                $(".table_body").append(item.title + " ");
+                $(".table_body").append(item.body + " ");
+            })
+
+
+        },
+        error:function(){
+            console.log("실패!");
+        }
+        
+    })
+    }
+
+
+// function load(){
+//             const xml = new XMLHttpRequest();
+//             xml.onreadystatechange = function(){
+//                 if(this.readyState === 4){
+//                     const response = JSON.parse(this.responseText);
+//                     console.log(response);   
+//                     }
+//                 }
+//             xml.open('post', 'https://jsonplaceholder.typicode.com/posts', true );
+//             xml.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+//             xml.send();
+//             }
+
+
+
+
+
+
+
+
+
+
+
+
+    // $.ajax({
+    //         type: "post",
+    //         url : "http://localhost:127.0.0.1:5500/barcode.json",
+    //         ////////Content-Type 명시함
+    //         headers: {'Content-Type': 'application/json'},
+    //         ////////보낼 데이터를 JSON.stringify()로 감싸주어야 함
+    //         data : JSON.stringify(obj),
+    //         success : function (data){
+    //             console.log(data);
+    //         },
+    //         error : function(e){
+    //         }
+    // })
+
+
+
+        // // 필요한 값들만 가져오기
+        //     const params = {
+        //     param1 : $("#param1").val(),
+        //     param2 : $("#param2").val()
+        //     }
+
+        //     // JSON.stringify를 이용해서 JSON 형식의 문자열로 변환
+        //     // POST 방식의 경우 data가 요청본문에 담기기 때문에 서버에서 @RequestBody를 사용하여 받야야한다.
+        //     // 만약 @RequestBody를 사용하지 않으면 메서드를 타지 않는다.
+        //     $.ajax({
+        //         url: `${CONTEXT_PATH}/xxx/aaa/api/edit`,
+        //         data: JSON.stringify(params),
+        //         method: 'POST',
+        //         dataType: 'json',
+        //         contentType:'application/json',
+        //         success : function (res) {
+        //             alert("저장되었습니다.");
+        //         },
+        //         error: function (xhr) {
+        //             alert("실패하였습니다.");
+        //         }
+        //     });
+
+
+
+        // function load(){
+        //     const xml = new XMLHttpRequest();
+        //     xml.onreadystatechange = function(){
+        //         if(this.readyState === 4){
+        //             const response = JSON.parse(this.responseText);
+        //             for(let i = 0; i < response.length; i++)
+        //             loadBarcodes(response[i]);
+        //         }
+        //         function loadBarcodes(barcode){
+        //             let date = new Date();
+        //             datenow = date.getFullYear() + "/" +
+        //                             (date.getMonth()+1) + "/" +
+        //                             date.getDate() + " ----- " +
+        //                             date.getHours() + "h:" +
+        //                             date.getMinutes() + "m:" +
+        //                             date.getSeconds() + "s: " +
+        //                             date.getMilliseconds() + "ms" ;  
+        //             const html = `
+        //             <tr>
+        //                 <th>${barcode.id}</th>
+        //                 <td>${datenow}</td>
+        //                 <td>${barcode.barcodeId}</td>
+        //                 <td>${barcode.status}</td>
+        //             </tr>
+        //             `;
+        //             const table = document.querySelector('.table_body');
+        //             table.innerHTML += html;
+        //         }
+        //     }
+<<<<<<< HEAD
+        //     xml.open('post', 'barcode.json', true );
+        //     xml.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+=======
+        //     xml.open('post', 'https://mcc.100min.co.kr/test/barcode.json', true );
+        //     xml.setRequestHeader('Content-type', 'application/x-www-form-urlencoded',
+        //     'Access-Control-Allow-Origin:*');
+>>>>>>> origin/main
+        //     xml.send();
+        // }
+
+
+
+
+<<<<<<< HEAD
+        // function load(){
+        //     const xml = new XMLHttpRequest();
+        //     xml.onreadystatechange = function(){
+        //         if(this.readyState === 4){
+        //             const response = JSON.parse(this.responseText);
+        //             for(let i = 0; i < response.length; i++)
+        //             loadBarcodes(response[i]);
+        //         }
+        //         function loadBarcodes(barcode){
+        //             let date = new Date();
+        //             datenow = date.getFullYear() + "/" +
+        //                             (date.getMonth()+1) + "/" +
+        //                             date.getDate() + " ----- " +
+        //                             date.getHours() + "h:" +
+        //                             date.getMinutes() + "m:" +
+        //                             date.getSeconds() + "s: " +
+        //                             date.getMilliseconds() + "ms" ;  
+        //             const insert = `
+        //             <tr>
+        //                 <th>${barcode.id}</th>
+        //                 <td>${datenow}</td>
+        //                 <td>${barcode.barcodeId}</td>
+        //                 <td>${barcode.status}</td>
+        //             </tr>
+        //             `;
+        //             const table = document.querySelector('.table_body');
+        //             table.innerHTML += insert;
+        //         }
+        //     }
+        //     xml.open('get', 'barcode.json', true );
+        //     xml.send();
+        // }
+=======
+>>>>>>> origin/main
+
+        // function load(){
+        //     const xml = new XMLHttpRequest();
+        //     xml.onreadystatechange = function(){
+        //         if(this.readyState === 4){
+        //             const response = JSON.parse(this.responseText);
+        //             for(let i = 0; i < response.length; i++)
+        //             loadBarcodes(response[i]);
+        //         }
+        //         function loadBarcodes(barcode){
+        //             let date = new Date();
+        //             datenow = date.getFullYear() + "/" +
+        //                             (date.getMonth()+1) + "/" +
+        //                             date.getDate() + " ----- " +
+        //                             date.getHours() + "h:" +
+        //                             date.getMinutes() + "m:" +
+        //                             date.getSeconds() + "s: " +
+        //                             date.getMilliseconds() + "ms" ;  
+        //             const insert = `
+        //             <tr>
+        //                 <th>${barcode.id}</th>
+        //                 <td>${datenow}</td>
+        //                 <td>${barcode.barcodeId}</td>
+        //                 <td>${barcode.status}</td>
+        //             </tr>
+        //             `;
+        //             const table = document.querySelector('.table_body');
+        //             table.innerHTML += insert;
+        //         }
+        //     }
+        //     xml.open('post', 'https://mcc.100min.co.kr/test/barcode.json', true );
+        //     xml.send();
+        // }
+
+
+    // let start = setInterval(load,2500);
+
+<<<<<<< HEAD
+    // let start = setInterval(load,2500);
+=======
+>>>>>>> origin/main
+
+        // $(function(){        
+        //     $("#sendButton").click(function() {
+
+        //         var params = "subject=" + $("#subject").val() + 
+        //             "&content=" + $("#content").val(); //쿼리임 데이터만 넘길 것!
+
+        //         $.ajax({
+        //             type:"POST",                //전송방식
+        //             url:"test2_ok.jsp",    //주소
+        //             data:params,            //전송데이터
+        //             dataType:"xml", // 받을 때 데이터 타입
+        //             success:function(args){ // 이 xml 형태의 데이터를 args로 받음 (바깥으로부터 들어옴)
+        //                                                         // xml 형태니깐 parsing 작업을 해서 받아야함
+        //                 $(args).find("status").each(function(){    //status 해당 태그 검색. eaxh는 반복문
+
+        //                     alert($(this).text()); // this의 text 형태로 출력해라 
+
+        //                 });
+        //                 var str = "";
+        //                 $(args).find("record").each(function(){    // each : 반복문 => record를 다 찾아내라
+        //                     var id = $(this).attr("id"); // attribute 넣어라
+        //                     var subject = $(this).find("subject").text();
+        //                     var content = $(this).find("content").text();
+        //                     str += "id=" + id +
+        //                         ", subject=" + subject +
+        //                         ", content=" + content + "<br/>";
+        //                 });
+        //                 // 반복문으로 만들어낸 데이터를 html로 바꿔서 str을 출력해라
+        //                 $("#resultDiv").html(str); 
+        //                 // javascript 방식에서 out.innerHTML = data; 이거랑 같은 코딩
+        //             },
+        //             beforeSend:showRequest,
+        //             // 보내기 전에!  showRequest가서 검사 (showRequest는 사용자정의)
+        //             //beforeSend는 true값을 받아야만, 위 ajax부분을 통해 서버로 데이터를 보냄
+        //             error:function(e){
+        //                 // 에러가 나면 e: 에러메서지가 여기 들어와 있을것임    
+        //                 alert(e.responseText); // error msg는 String이기 때문에 responseText
+        //                 //xml을 받을때는 e.responseXml
+        //             }
+        //         });
+        //     });
+        // });
+    
+
+        
+        // function load() {
+        //         $.ajax({
+        //         url: `https://mcc.100min.co.kr/test/barcode.json`,
+        //         method: 'post',
+        //         async : true,
+        //         data : {
+        //             id : $('#id').val(),
+        //             barcodeId : $('#barcodeId').val(),
+        //             status : $('#status').val()
+        //         },
+        //         dataType : 'html',
+        //             beforeSend:function(xhr){
+        //                 xhr.setRequestHeader("access-control-allow-origin : *");
+        //             },
+        //             success : function (res) {
+        //                 // 서번단에서 HTML을 반환해서 기존 페이지를 깜빡임없이 새로 고친다.
+        //                 document.querySelector('.table_body').innerHTML += res;
+        //                 console.log(res);
+        //             },
+        //             error: function (xhr) {
+        //                 alert("fail");
+        //                 console.log(xhr);
+        //             }
+        //         });
+        // }
+            
+
+
+        // function load(){
+        //     $.ajax({
+        //         url:'barcode.json',
+        //         data:params,          
+        //         dataType:"json",
+        //         success:function(data){
+
+        //         },
+        //         error:function(err){
+        //             console.log('error!');
+        //         }
+        //     })
+        // }
+
+    </script>
+</body>
+</html>

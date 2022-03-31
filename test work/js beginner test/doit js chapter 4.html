@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1 id = "heading">
+        클릭하면 색을 바꿀것임
+    </h1> -->
+    <input class="multiple" name=multiple placeholder="3의 배수 확인하기">
+    <button type="button" onclick="multiple()">확인하기</button>
+    <div id="multiple"></div>
+    </p>
+    <script>
+         // == part4. 제어문 + 함수 ============
+
+        function multiple(){ 
+        // let result = document.getElementsByTagName('input').value;
+        let result = document.querySelector('.multiple').value;
+        console.log(result)
+
+        let displayArea = document.querySelector('#multiple');
+            if (result % 3 === 0) {
+                displayArea.innerHTML = result + "은 3의 배수입니다.";
+            }				
+            else {
+                displayArea.innerHTML = result + "은 3의 배수가 아닙니다.";	
+            }						
+        }
+
+        // if문 특 : 조건이  true가 되면 else문은 실행하지 않고 넘어감. 
+		
+        var i = 0
+        while( i < 5){
+            document.write("while 반복  ");
+            i +=1;
+        }
+        
+        // scope = js에서 변수를 선언하고 사용할 때 변수가 적용되는 범위
+        
+        /* ======================================
+        // hoisting   :  끌어올리다.
+            : 변수 선언부분을 끌어올려서 해석함
+            변수의 선언과 할당을 분리해서 선언부분을 스코프의 가장 위쪽으로 끌어올림.
+        
+            var는 함수영역(레벨)의 스코프를 가짐
+            let, const는 블록영역 {} 의 스코프를 가짐, {}안에서만 사용가능
+
+            정리하면
+            var : 재선언 , 재할당 , 호이스팅 가능
+            let : 재선언 불가능 , 재할당은 가능 
+            const : 재선언, 재할당 불가능
+        ========================================*/
+        
+        /*
+        console.log(sum)
+        let  sum = 10
+
+        여기서 
+        var sum 일 경우 undefined라도 출력되지만 
+        let sum을 해버리면 오류메세지 발생, hoisting이 되지않음!
+        */
+
+
+
+        var sum =10
+        console.log(sum)
+        var sum ="십"
+        console.log(sum)
+
+        let summ =99
+        console.log(summ)
+        // let summ =12
+
+        console.log(summ)
+
+
+        // 다른 스크립트에서 읽나?
+        const hoe = 10;
+        var hoee = 20;
+        let hoeee = 30;
+
+        // 즉시실행함수
+        (
+            function (){
+            console.log('즉시실행된 함수')
+            }()
+        );
+        
+        //화살표 함수
+        /*
+            const hi = () => function(){
+            return "하이요 ㅎㅎ"
+            }
+
+            const hi = () =>{return "하이요 ㅎㅎ"}
+
+        */
+        const hi = () =>"하이욯ㅎ"
+        console.log(hi)
+        
+
+         // 하고싶은거 연습 1
+        // let heading = document.querySelector('#heading');
+        // let flag = true;
+        // heading.onclick = function(){
+        //         if(flag=false){
+        //             flag = true;
+        //             heading.style.color="red";
+        //             console.log("빨강" +  flag)
+        //         }
+        //         if(flag=true){
+        //             flag = false;
+        //             console.log('레드일때 클릭' + flag)
+        //             heading.style.color="blue";
+        //         }
+        //         return flag;
+        // }
+        
+
+
+
+    </script>
+    <script>
+        console.log(hoe)
+        console.log(hoee)
+        console.log(hoeee)
+    </script>
+</body>
+</html>

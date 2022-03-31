@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <h1 id = "heading">
+        자바스크립트 
+    </h1>
+    <p id="text">
+        텍스트 클릭하기
+    </p>
+
+    <h1>어서오세요</h1>
+    
+    <script>
+
+        // for( var i = 1; i <6; i++){
+        //     for(var j=2; j>1; j++){
+        //         console.log(i,j);
+        //         if(j == 100){
+        //             break; 
+                    
+        //         }
+        //     }
+        // }
+
+        // let result = 0;
+        // while(result < 3){
+        //     console.log(result);
+        //     result++;
+        // }
+
+        // var x = 10;
+        // var str = x.toString();
+        // console.log(x + '1');
+        // console.log(typeof str, str)
+
+        // 색바꾸기
+        let heading = document.querySelector('#heading');
+        let flag = false;
+        heading.onclick = function(flag){
+            if(flag =false){
+                heading.style.color="red";
+                flag = true;
+                console.log(flag)
+                return flag;
+            }
+        }
+        if(flag = true){
+            heading.onclick =function(flag){
+                console.log('레드일때 클릭')
+                heading.style.color="blue";
+                flag = false;
+                return
+            }
+        }
+        
+
+
+
+        // prompt , alert
+        var name = prompt('이름을 입력하세요')
+        document.write("<b><big>"+name+"</big></b> 님, 환영합니다");
+        alert("입력하신 이름은 " + name + "입니다.") 
+
+
+
+        // 대소문자 구분 
+        let value = 1
+        let Value = 20
+        let VALUE = 30
+        console.log(value);
+        console.log(Value);
+        console.log(VALUE);
+
+
+        // 예약어
+        /*
+        arguments
+        return
+
+        break
+        case
+        continue
+        default
+        do
+        else
+        false
+        for
+        function
+        if
+        null
+        
+        super
+        switch
+        this
+        true
+        try
+        type of
+        var
+        void
+        while 
+        with
+        */
+
+        var _http = 'http'
+        console.log(_http)
+
+        var apple = 20000
+        var banana = 10000
+        var total = apple+banana
+        console.log(typeof(total) ,total);
+        let total_tostring = total.toString()
+        console.log(typeof(total_tostring) , total_tostring);
+        var stBanana =  banana.toString()
+        var stTotal = stBanana + apple
+        console.log(typeof(stTotal) , stTotal);
+
+
+    </script>
+</body>
+</html>

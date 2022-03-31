@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Jua');
+
+* {
+	box-sizing: border-box;
+}
+.container{
+    margin-top: 5vh;
+    width:40vw;
+    height: 70vh;
+    /* background:url(images/heart.png) no-repeat 5px -100px;
+    background-size:500px;   */
+    border:1px solid #ccc;
+    border-radius:2%;
+    box-shadow:2px 2px 5px #333;
+}
+.day1{
+    padding-top:1em;
+    text-align:center;  
+}
+.day1 h3 {
+    font-size:0.5em;
+    color:#666;
+}
+.accent{
+    margin-top: 2vh;
+    font-family: 'Jua', sans-serif;
+    font-weight:bold;
+    font-size:2.5em;
+    color:#222;
+}
+.bar {
+	width:100%;
+	margin:60px auto 0 auto;
+	padding-left:15px;
+	height:40px;	
+	background:#747474;
+	color:#fff;
+	font-size:1.2em;
+	line-height:40px;
+}
+.day2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: red; */
+    margin:20px auto 20px auto;
+}
+.day2 ul {
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    justify-content: space-between;
+    margin:  0 auto;
+    padding-left: 2vw;
+    list-style: none;
+    border-bottom:1px dashed #ccc;
+}
+.day2 ul:last-child {
+	border-bottom:none;
+}
+.item-title {
+    width:10vw;       
+    /* text-align: center;  */
+    font-weight:bold;
+    font-size:0.9em;
+    /* background-color: red; */
+}
+.item-date {
+    margin-left: 5vw;
+    width: 25vw;
+    font-size:0.9em;
+    color:#222;
+    text-align: start;
+}
+    </style>
+</head>
+<body>
+    <div id="item">
+		<img src="img/flower1.jpg" alt="" id="cover">
+	</div>
+    <div id="lotto"></div>
+    <div class="container">
+		<div class="day1">
+			<h3>기념일 계산</h3>
+			<p id="accent" class="accent"><span style="font-size:0.6em">며칠?</span></p>
+			</div>
+			<div class="bar">기념일 계산</div>
+			<div class="day2">
+				<ul>
+					<li class="item-title">100일</li>         
+					<li class="item-date" id="date100"></li>
+				</ul>
+				<ul>
+					<li class="item-title">200일</li>
+					<li class="item-date" id="date200"></li>
+				</ul>     
+				<ul>
+                    <li class="item-title">1년</li>
+                    <li class="item-date" id="date365"></li>
+                </ul>      
+				<ul>
+					<li class="item-title">500일</li>
+					<li class="item-date" id="date500"></li>
+				</ul>      									     
+			</div>
+		</div>
+    <script>
+       // == part5. 이벤트 ============
+
+        var coverImage = document.querySelector("#cover");
+		coverImage.ondblclick = function() {
+			alert('눌렀습니다');
+		};
+		coverImage.onclick = function() {
+			coverImage.style.border = "5px black solid";
+		};
+		coverImage.onmouseup = function() {
+			coverImage.style.border = "";
+		};
+        coverImage.onkeypress = function(e) {
+            coverImage.style.border = "5px black solid";
+		};
+
+        (
+            function () {
+                addEventListener('keydown' ,() =>{
+                    if (window.event.keyCode == 13){
+                        console.log("엔터 키 누름")
+                    }
+                    if (window.event.keyCode == 8){
+                        console.log("백스페이스 누름")
+                    }
+                    if (window.event.keyCode == 83){
+                        console.log("s 누름")
+                    }
+                })
+            }()
+        );
+        // https://blog.lael.be/post/75 키코드 레퍼런스 테이블
+
+        
+
+        /*
+            마우스이벤트
+            click
+            dblclick
+            mousedown 사용자가 요소위에서 마우스버튼을 누르는동안
+            mouseup 사용자가 요소위에서 마우스버튼을 뗄 떼
+            mousemove
+            mouseover 포인터가 요소위로 옮겨질 때
+            mouseout 포인터가 요소위를 벗어날 때
+
+
+            키 이벤트
+            keypress   키 누르면(계속)
+            keydown   키 누르면(1회)
+            keyup       키에서 손 뗄떼
+
+            문서로딩 이벤트 
+            abort 문서가 완전히 로딩되기 전에 불러오기를 멈췄을때 이벤트 발생
+            error 문서가 정확히 로딩안됬을때
+            load 문서가 로딩되면
+            resize 문서화면이 바뀌면
+            scroll 스크롤되면
+            unload 문서를 벗어나면
+
+            blur
+            change
+            focus
+            reset
+            submit
+        */
+
+         // == part6. 객체 ============
+        var book = {
+            title:"자바스크립트",
+            author:"홍길동",
+            pages:"500",
+            price:"16000",
+        }
+        /*
+            객체 종류
+
+            내장객체 : Number, Boolean, Array, Math 등
+            DOM : Document, Image 등
+            브라우저 객체 모델 = {
+                Navigator : 브라우저 종류 및 버전, 
+                History, 
+                Location : 주소표시줄 정보,
+                Screen, 등
+            } 
+            사용자 정의 객체 : 변수 등
+        */
+        
+        console.log(navigator.vendor)
+        console.log(window)
+        // window.alert("ㅎㅇ!")
+        /*
+            웹 문서에 있는 요소를 프로그램에서 사용하려면 객체형태여야 한다.
+            예를들어 Image를 객체를 사용해서 이미지를 다룰수 있는데, 
+            웹 이미지를 만들기 위한 기본틀을 Prototype이라 한다.
+            프로토타입을 사용해 만들어낸 객체는 Instance라 한다.
+
+            ? Prototype  = java Class ? 
+            ? instance = java instance ?
+        */
+        var now = new Date();
+        console.log(now)
+        console.log("로케일스트링 " +now.toLocaleString())
+        console.log("데이트스트링 " +now.toLocaleDateString())
+        console.log("타임스트링 " +now.toLocaleTimeString())
+        
+
+
+        // const lottoShow = document.querySelector('#lotto');
+        // const lottoNum = []
+        // let result;
+        // function lottoNumber(result){
+        //     for(let i=0; i<6 ;i++){
+        //             result = Math.floor((Math.random() * 44+1))
+        //         for(let j in lottoNum){
+        //             if(result==lottoNum[j]){
+        //                 result = Math.floor((Math.random() * 44+1))
+        //             }
+        //         }
+        //     }
+        //     return result;
+        // }
+        // lottoShow.innerHTML += lottoNumber();
+        
+
+
+        // 로또번호 (웹 참조) floor , sort , len in
+        const lottoShow = document.querySelector('#lotto');
+        const lottoNum = []
+        for(let i=0; i<6; i++){
+            let num = Math.floor((Math.random() * 44+1))
+            for(let j in lottoNum){
+                if(lottoNum == lottoNum[j]){
+                    num = Math.floor((Math.random() * 44+1));
+                }
+            }
+            lottoNum.push(num);
+        }
+        lottoNum.sort(function(a,b){
+            return a-b;
+        })
+        
+        lottoShow.innerHTML += "로또번호 : " + lottoNum;
+
+        
+        /*
+            리터럴 표기법
+            var a = 10; 
+            ? 선언과 동시에 초기화  = 리터럴 ?
+            
+            
+        */
+
+        var now = new Date();
+        var firstDay = new Date("2021-12-15");  
+        var toNow = now.getTime();  
+        var toFirst = firstDay.getTime();  
+        console.log(toFirst) //getTime() : 밀리초로 바꿈
+        var passedTime = toNow - toFirst;  // 첫날과 오늘 사이의 차이 (밀리초)
+        var passedDay = Math.round(passedTime/(24*60*60*1000)); // 밀리초를 일 단위로 변환 후 반올림
+        document.querySelector('#accent').innerText = passedDay + "일";  
+        console.log(passedDay)
+        calcDate(100);  // 100일 기념일을 계산해서 표시합니다.
+        calcDate(200);  // 200일 기념일을 계산해서 표시합니다.
+        calcDate(365);  // 1년 기념일을 계산해서 표시합니다.
+        calcDate(500);  // 500일 기념일을 계산해서 표시합니다.
+
+        function calcDate(days) {
+            var future = toFirst + days*(1000*60*60*24);  // 처음 만난 날에 밀리초로 바꾼 100일을 더합니다.
+            var someday = new Date(future);  // future 값을 사용해 Date 객체의 인스턴스를 만듭니다.
+            var year = someday.getFullYear( );  // ‘연도’를 가져와 year 변수에 저장합니다.
+            var month = someday.getMonth( ) + 1;  // ‘월’을 가져와 month 변수에 저장합니다.
+            var date = someday.getDate( );  // ‘일’을 가져와 date 변수에 저장합니다.
+            document.querySelector("#date"+days).innerText = year + "년 " + month + "월 " + date + "일";
+        }
+    </script>
+</body>
+</html>

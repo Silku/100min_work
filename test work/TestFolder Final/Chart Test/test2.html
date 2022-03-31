@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div>
+        <canvas id="myChart_pie"></canvas>
+      </div>
+      <script>
+const data = {
+  labels: [
+    'Deposit',
+    'Expese',
+    'payable',
+    ''
+  ],
+  datasets: [{
+
+    label: 'My First Dataset',
+    data: [75, 50, 55, 120],
+    backgroundColor: [
+      'rgb(255, 205, 86)',
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(222,222,222)'
+    ],
+    hoverOffset: 4
+  }]
+};
+
+const config = {
+
+  type: 'doughnut',
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        align:'middle',
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Doughnut zhart'
+      }
+    }
+  },
+};
+const myChart_pie = new Chart(
+  document.getElementById('myChart_pie'), 
+  config
+);
+
+    </script>
+</body>
+</html>

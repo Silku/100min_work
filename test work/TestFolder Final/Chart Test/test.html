@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <iframe id="pic" name="pic" width="100%" scrolling="no"  onload="this.height=pic.document.body.scrollHeight" frameborder="0" 
+                 src="Page.action?returnPage=viewpicture&classId=<s:property value="#request.scene.id"/>&currPage=<s:property value="#request.currPage"/>">
+</iframe>
+    <div>
+        <canvas id="myChart"></canvas>
+      </div>
+      <script>
+        const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        ];
+        const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45],
+        }]
+        };
+    
+        const config = {
+        type: 'line',
+        data: data,
+        options: {}
+        };
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    
+    
+        </script>
+    <script>
+        var ie=!!document.all;
+        function LoadIf(){
+          var doc;
+          if(ie){
+              doc = frames['pic'].document;
+          }else{ 
+              doc = document.getElementById("pic").contentWindow.document;
+          }
+          document.getElementById("thumbnailwrapper").innerHTML = doc.body.innerHTML;
+        }
+    </script>
+</body>
+</html>

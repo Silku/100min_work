@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백의민족 바코드 시스템</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <main>
+        <img src="" alt="">
+        <h1 class="title">백의민족 <br>바코드 시스템</h1>
+        <!-- <form action="list.html" method="post">
+        </form> -->
+            <div class="input-group mb-3">
+                <input type="text" name="barcodeId" class="form-control" placeholder="바코드를 인식해 주세요." aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <button type="button" id="submit" onclick="location.href='list.html'">전송</button>
+            
+
+        <!-- <button type="button" onclick="getNum()">sss </button> -->
+        <p>
+
+        </p>
+
+    </main>
+    <script>
+        $(document).ready(function(){
+            $('#submit').click(function(){   //submit 버튼을 클릭하였을 때
+                let sendData = "barcodeId="+$('input[name=barcodeId]').val();   //폼의 이름 값을 변수 안에 담아줌
+                $.ajax({
+                    type:'get',   
+                    url:'barcode.json',   //데이터를 주고받을 파일 주소
+                    data:sendData,   //위의 변수에 담긴 데이터를 전송해준다.
+                    dataType:'json',   //html 파일 형식으로 값을 담아온다.
+                });
+                console.log(sendData)
+            });
+        });
+
+
+
+
+
+
+        // $(document).ready(function(){
+        //     $('#submit').click(function(){   //submit 버튼을 클릭하였을 때
+        //         let sendData = "barcodeId="+$('input[name=barcodeId]').val();   //폼의 이름 값을 변수 안에 담아줌
+        //         $.ajax({
+        //             type:'get',   
+        //             url:'barcode.json',   //데이터를 주고받을 파일 주소
+        //             data:sendData,   //위의 변수에 담긴 데이터를 전송해준다.
+        //             dataType:'json',   //html 파일 형식으로 값을 담아온다.
+        //         });
+        //     });
+        // });
+
+
+
+
+        // function getNum(){
+        //     let input = document.getElementsByName('barcodeId');
+        //     console.log(input);
+        // }
+
+        // function listView(barcodeId){
+        //     let f = document.createElement('form');
+            
+        //     let obj;
+        //     obj = document.createElement('input');
+        //     obj.setAttribute('type', 'hidden');
+        //     obj.setAttribute('name', 'userid');
+        //     obj.setAttribute('value', userid);
+            
+        //     f.appendChild(obj);
+        //     f.setAttribute('method', 'post');
+        //     f.setAttribute('action', 'view.do');
+        //     document.body.appendChild(f);
+        //     f.submit();
+        // }
+
+
+        // $(document).ready(function(){
+        //     $('#submit').click(function(){   //submit 버튼을 클릭하였을 때
+        //         let sendData = "barcodeId="+$('input[name=barcodeId]').val();   //폼의 이름 값을 변수 안에 담아줌
+        //         $.ajax({
+        //             type:'post',   //post 방식으로 전송
+        //             url:'barcode.json',   //데이터를 주고받을 파일 주소
+        //             data:sendData,   //위의 변수에 담긴 데이터를 전송해준다.
+        //             dataType:'html',   //html 파일 형식으로 값을 담아온다.
+        //             success : function(data){   //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
+        //                 $('#message').html(data);  //현재 화면 위 id="message" 영역 안에 data안에 담긴 html 코드를 넣어준다. 
+        //                 console.log(data);
+        //             }
+        //         });
+        //     });
+        // });
+
+    </script>
+</body>
+</html>

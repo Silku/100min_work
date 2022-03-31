@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        table{
+            width: 80vw;
+            font-size: 2rem;
+        }
+        thead{
+            background-color: rgb(255, 160, 160);
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <th>이게 제목임1?</th>
+            <th>이게 제목임2?</th>
+            <th>이게 제목임3?</th>
+            <th>이게 제목임4?</th>
+        </thead>
+        <tbody class="body">
+            <tr>
+                <td>이거 내용임</td>
+                <td>이거 내용임</td>
+                <td>이거 내용임</td>
+                <td>이거 내용임</td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" name="test_button" class="test_button">뭔가가 생성되는 버튼</button>
+    <button type="button" name="test_button1" class="test_button1">이걸로 다 지울거임</button>
+    <script>
+        let table = document.querySelector('.body');
+        
+        let btn0 = document.querySelector('.test_button');
+        let btn1 = document.querySelector('.test_button1');
+        btn1.onclick = () =>{
+            console.log('다지우기 버튼 클릭')
+            table.remove();
+        }
+        btn0.onclick = () =>{
+
+        }
+            console.log('뭔가가 생성되는 버튼 클릭')
+            fetch('barcode.json',{
+            method:'get',
+            headers:{
+                'Content-Type': 'application/json'
+            }
+            })
+            .then((response) =>{
+                return response.json()
+            })
+            .then((a) =>{
+                console.log(a)
+                // document.write(a)
+
+                let hh = JSON.stringify(a)
+                let gg = toString(a)
+
+                // let gg = JSON.parse(a)
+                // document.write('글하나 쓰기 힘드네..')
+                table.innerHTML += '<tr><td>' + '이거 맞나영';
+                table.innerHTML += '<tr><td>' + 'tr td이게왜 자동으로 닫힘 ?';
+                table.innerHTML += '<tr><td>' + "신기하네" + '<td> 사실 딱히 안신기함' + '<td>' + '여긴 채울거임' + '<td>' + '여기도 채울거임';
+                table.innerHTML += '<tr><td>' + hh.barcodeId;
+                table.innerHTML += '<tr><td>' + hh.barcodeId;
+                table.innerHTML += '<tr><td>' + a.barcodeId;
+                table.innerHTML += '<tr><td>' + gg.barcodeId;
+                table.innerHTML = a.barcodeId(a);
+                // table.innerHTML += '<tr><td>' + gg.time;
+                if (a===undefined){
+                    alert('하!')
+                }
+            })
+
+            function banbok(){
+                for(let i=0; i<11; i++)
+                console.log(i);
+            }
+            
+
+            banbok();
+
+            function samhang(){
+                // 삼항연산자
+                var age = 20;
+                var beverage = (age >= 19) ? "소주" : "쥬스";
+                console.log(beverage); // "Beer"
+                console.log('자체 메서드 다찍히고 fetch가 동작하네?')
+            }
+            samhang();
+
+            var targetStr = "간장 공장 공장장은 강 공장장이고, 된장 공장 공장장은 장 공장장이다."
+
+
+    </script>
+</body>
+</html>

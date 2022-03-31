@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>https://www.youtube.com/watch?v=nKD1atl6cAw&t=74s</title>
+    <!-- <title>코딩애플 ajax</title> -->
+</head>
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+
+    <script>
+        // Ajax의 개발패턴
+        // 1. XMLHttpRequest 생성
+        // 2. callback 함수등록
+        // 3. open(method.url);
+        // 4. send(data);
+        // 5. callback 함수 정의
+
+
+
+        // 이하 예제 1(구식문법)
+
+        // var ajax = new XMLHttpRequest();
+        // ajax.onreadystatechange = function(){
+        //     if(this.readyState == 4 && this.status == 200){
+        //         console.log(ajax.responseText)
+        //         document.write(ajax.responseText)
+        //     }
+        // };
+        // ajax.open("GET", "https://codingapple1.github.io/price.json",true);
+        // ajax.send();
+
+
+        // 이하 예제 2
+
+        // fetch('https://codingapple1.github.io/price.json')
+        //     .then((response)=>{
+        //         if(!response.ok){
+        //             throw new Error('400 또는 500 에러발생')
+        //         }
+        //         return response.json()
+        //     }) 
+        //     // 위의 구문이 콜백함수
+        //     .then((result) =>{
+        //         console.log(result)
+        //     })
+        //     .catch(()=>{
+        //         console.log('에러')
+        //     })
+
+
+        // 이하 예제 3(await 사용하기)
+
+        // async function readData(){
+        //     var response = await fetch('https://codingapple1.github.io/price.json');
+        //     if(!response.ok){
+        //         throw new Error('400 or 500 Error!');
+        //     }
+        //     var result = await response.json();
+        //     console.log(result)
+        // }
+        // readData().catch(()=>{
+        //     console.log('Error!')
+        // })
+
+        
+
+        // 이하 예제4(axios 외부 라이브러리)
+        axios.get('https://codingapple1.github.io/price.json')
+        .then((response)=>{
+            console.log(result.data)
+        })
+        .catch(()=>{
+            console.log('에러')
+        })
+
+
+        /*
+        기타 : 
+        CallBack함수
+        정의 : 함수에 파라미터로 들어가는 함수 
+        용도 : 순차적으로 실행하고 싶을때 씀
+        특징 : 1.다른데서 만든 함수도 넣을 수 있음
+                 2. 함수 작명가능 function Ready() 등
+                 3. 콜백함수가 필요한 함수에만 사용가능(addEventListener, setTimeout 등)
+
+        예제코드 : 여기서 function뒤에 들어가는것이 콜백함수임. addEventListener라는 함수를 통해 실행.
+        document.querySelector('.button').addEventListener('click', function(){
+           console.log('클릭됨')
+       })
+
+        예제코드2
+        setTimeout(function(){
+            console.log('5초 경과 TEST')
+            document.write('5초경과후 뜨는 텍스트')
+       },5000)
+        */
+
+        // 예제코드3
+        // 해설 : first라는 함수가 param을 받고 실행할수 있게 끔 되어있기때문에 , 
+        // first(second) 해놓으면 second()를 파라메터로 받아서 second()안에있는 함수가 실행됨 
+        function first(Param){
+            console.log(1)
+            Param()
+        }
+        function second(){
+            setTimeout(function(){
+                console.log(100)
+            },2000)
+        }
+        first(second) 
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+img{
+    margin-top: 10vh;
+    width: 20vw;
+    height: 35vh;
+    background-color: skyblue;
+}
+.title{
+    margin-top: 5vh;
+    color: black;
+    font-size: 5rem;
+    font-weight: bolder;
+}
+.input-group{
+    margin-top: 5vh;
+    width: 50vw;
+}
+.form-control{
+    height: 10vh;
+    font-size: 3rem;
+}
+button{
+    margin-top: 5vh;
+}

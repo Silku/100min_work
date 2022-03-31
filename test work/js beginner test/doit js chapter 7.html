@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id = "hidden">이 텍스트는 감춰질 것입니다.</p>
+    <button type="button" onclick="location.href='doit js chapter 8.html'">테스트용 다음페이지 넘어가기 버튼</button>
+    <script>
+        // == part7. Array ============
+
+        var baba = ["a","b","c","d"]
+        document.write(baba.length +"<p>")
+        
+        
+        for (let i = 0; i < baba.length; i++) {
+            document.write(baba+ " ")
+        }
+
+        for (let i = 0; i < baba.length; i++) {
+            document.write("<br>"+ baba[i])
+        }
+        
+        // 자바스크립트 배열부터 
+        var nums =["1","2","3"]
+        var nums2 =["4","5","6"]
+        var nums3 =[7,"8",9]
+        nums.push("ㅋㅋ") //배열 뒤에
+        nums.unshift("ㅎㅎ")  //배열 앞에
+        var abc = nums.concat(nums2, nums3)
+        console.log(abc)
+        abc.pop() //배열 맨 뒤 요소를 추출
+        console.log(abc)
+        abc.shift() //배열 맨 앞 요소를 추출
+        console.log(abc)
+        
+        //spilce (index, 개수, 새로 추가할 요소)
+        //abc.splice(0) //배열 index 0부터 끝까지 삭제함
+        console.log(abc)
+
+        abc.splice(0,3) //배열 index 0부터 3개 까지 삭제
+        console.log(abc)
+        
+        abc.splice(0,0,"1","2","3") //2번째 인수를 3주면 맞교환 형태로 바뀜(삭제하고 다시추가) , 여기서는 지우는거 없이 추가만하기 위해 0넣음
+        console.log(abc)
+
+        var sliceabc = abc.slice(3) //slice 원하는 요소들을 추출함
+        console.log(sliceabc)
+        
+
+        
+    </script>
+</body>
+</html>

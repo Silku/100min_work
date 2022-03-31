@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차트.js</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!--  -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <!-- calendar.js/css -->
+    <script src="js/calendar.js"></script>
+    <link href='lib/main.css' rel='stylesheet' />
+    <script src='lib/main.js'></script>
+    <!-- origin -->
+    <link rel="stylesheet" href="css/dashboard.css" >
+    <link rel="stylesheet" href="css/chart.css">
+</head>
+<body>
+    <div class="container">
+        <header class="navbar navbar-light sticky-top bg-light flex-md-nowrap p-0 ">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
+                <span class="logo" data-feather="bar-chart"></span>
+                ShapeRex
+            </a>
+            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <input class="form-control form-control-light w-100" type="text" placeholder="" aria-label="Search">
+            <div class="navbar-nav">
+                <div class="nav-item text-nowrap">
+                    <a class="nav-link px-3" href="#">
+                        <span data-feather="search"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-nav">
+                <div class="nav-item text-nowrap">
+                    <a class="nav-link px-3" href="#">
+                        <span data-feather="bell"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-nav">
+                <div class="nav-item text-nowrap">
+                    <a class="nav-link px-3" href="#">
+                        <span data-feather="mail"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-nav">
+                <div class="nav-item text-nowrap">
+                    <a class="nav-link px-3" href="#">
+                        <span data-feather="box"></span>
+                        <span data-feather="chevron-down"></span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <!-- 사이드 및 메인컨텐츠 START -->
+        <div class="container-fluid">
+
+            <div class="row">
+                <nav id="sidebarMenu" class="col-2 d-md-block sidebar collapse">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item"> 
+                                <a class="nav-link active" aria-current="page" href="#">
+                                <span data-feather="grid"></span>
+                                Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                <span data-feather="calendar"></span>
+                                MY Task
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                <span data-feather="file"></span>
+                                MY Project
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                <span data-feather="credit-card"></span>
+                                MY Wallet
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                <span data-feather="bar-chart-2"></span>
+                                History Data
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                Invoice
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                <span data-feather="help-circle"></span>
+                                Helps
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="white_space"></div>
+                        <div class="nav-item text-nowrap">
+                            <a class="nav-link px-3" href="#">
+                                <span class="logout_icon" data-feather="log-out"></span>
+                                Log out
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+                <main class="col-xl px-md-3">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center 
+                    pt-3 mb-1 border-bottom">
+                    </div>
+                    <div class="main_cont_row">
+                        <div class="col-md-4">
+                            <section class="section_credit_card col">
+                                <div class="subtitle">
+                                    MY Credit Card
+                                </div>
+                                <p></p>
+                                <div class="card_image">
+                                </div>
+                                <hr class="line">
+                                <ul class="card_info">
+                                    <li>
+                                        Card number : 1234 12345 12345
+                                    </li>
+                                    <li>
+                                        Account Name : Subash Chandra
+                                    </li>
+                                    <li>
+                                        Card Status : active
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+                        <div class="col-md-8">
+                            <section class="section_chart col">
+                                <div class="subtitle section_chart_title">
+                                    <span>Statistics</span>
+                                    <div>
+                                        <span>
+                                            2018
+                                        </span>
+                                        <span data-feather="chevron-down"></span>
+                                        <span>
+                                            month
+                                        </span>
+                                        <span data-feather="chevron-down"></span>
+                                    </div>
+                                </div> 
+                                <canvas class="my-4 w-100" id="myChart" width="100" height="26">
+                                </canvas>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="col-12">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="main_cont_row">
+                        <div class="col">
+                            <section class="section_pie_chart col-md">
+                                <div class="subtitle">
+                                    Earning in Month
+                                </div>
+                                <canvas class="my-3 w-100" id="myChart_pie" width="100" height="70">
+                                </canvas>
+                                <!-- <hr class="line"> -->
+                            </section>
+                        </div>
+                        <div class="col">
+                            <div class="cont_sale">
+                                <section class="section_sale month col-12">
+                                    <div class="subtitle">
+                                        Monthly Sale
+                                    </div>
+                                    <div class="content">
+                                        <div class="info_text">
+                                            <span class="today_value">20541</span>
+                                            <span class="today_text">Today income</span>
+                                        </div>
+                                        <div class="sale_box">
+                                            <span data-feather="arrow-down"></span>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="section_sale year col-12">
+                                    <div class="subtitle">
+                                        Yearly Sale
+                                    </div>
+                                    <div class="content">
+                                        <div class="info_text">
+                                            <span class="today_value">20 54125</span>
+                                            <span class="today_text">Today income</span>
+                                        </div>
+                                        <div class="sale_box btm">
+                                            <span data-feather="arrow-up"></span>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <section class="section_calendar col">
+                                <div class="subtitle">
+                                    calendar
+                                </div>
+                                <div id='loading'>loading...</div>
+                                <div id='calendar'></div>
+                            </section>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

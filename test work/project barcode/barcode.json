@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "time": "12:55 ",
+      "barcodeId": "12521058",
+      "status": "B-OK"
+    },
+    {
+      "id": 2,
+      "time": " ",
+      "barcodeId": "45678978",
+      "status": "B-OK"
+    },
+    {
+      "id": 3,
+      "time": " ",
+      "barcodeId": "98765421",
+      "status": "B-ERROR!!"
+      }
+]

@@ -1,0 +1,269 @@
+ul,ol,li{
+  list-style-type: none;
+}
+
+body {
+  font-size: .875rem;
+  background:url(/img/bg.png) no-repeat;
+  background-position: center;
+}
+
+.container{
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/* --Navbar*/
+.navbar{
+  margin-top: 30px;
+  width: 100%;
+}
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: black;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+.navbar-brand .logo{
+  width: 23px;
+  height: 23px;
+  color: #FFC017;
+  font-weight: bolder;
+}
+.navbar .navbar-toggler {
+  top: .25rem;
+  right: 1rem;
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-light {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-light:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+
+/*--  Sidebar*/
+.sidebar {
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  background-color: #ffffff8e;
+}
+
+@media (max-width: 1200px) {
+  .sidebar {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; 
+  /* Scrollable contents if viewport is shorter than content. */
+}
+.sidebar .white_space{
+  height: 17rem;
+}
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #727272;
+}
+.sidebar .nav-link .logout_icon {
+  color: #FFC017
+}
+
+.sidebar .nav-link.active {
+  color: #FFC017;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+/* --main Start  */
+main{ 
+  background-color: #e7e7e7;
+}
+.main_cont_row{
+  display: flex;
+  flex-flow: row nowrap;
+  /* background-color: #FFC017; */
+  height: 300px;
+}
+.section_credit_card, .section_chart, .section_pie_chart, .section_calendar{
+  margin : 0.5rem 1rem;
+  padding : 0.5rem;
+  height: 280px;
+}
+.cont_sale{
+  margin : 0.5rem 1rem;
+  height: 280px;
+}
+.section_credit_card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  background-color: #ffffff;
+  margin: 0.5rem 1rem auto;
+}
+.section_credit_card .card_image{
+  width: 180px;
+  height: 100px;
+  background-color: rgb(107, 237, 247);
+}
+.section_credit_card ul{
+  margin-top: 5px;
+  padding: 0;
+  font-size: 0.8rem;
+}
+.line{
+  width: 95%;
+  border: 0.01rem solid rgb(209, 209, 209);
+}
+.section_chart{
+  background-color: #ffffff;
+  margin: 0.5rem 1rem auto;
+}
+.section_chart .section_chart_title{
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+}
+
+.section_pie_chart{
+  background-color: #ffffff;
+}
+
+.cont_sale{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+.section_sale.month, .section_sale.year{
+  margin: 0.5rem;
+  padding : 0.5rem;
+  height: 133px;
+}
+
+.section_sale.month{
+  background-color: #ffffff;
+
+}
+.section_sale.year{
+  background-color: #ffffff;
+}
+
+.section_sale .content{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin : 1rem auto;
+}
+.section_sale .info_text{
+  margin-left: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+}
+.section_sale .today_value{
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.section_sale .today_text{
+  color: #ababab;
+}
+.section_sale .sale_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin : 0.1rem  1rem auto;
+  width: 90px;
+  height: 60px;
+  background-color: #FFC017;
+  color: #ffffff;
+}
+.section_sale .sale_box.btm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin : 0.1rem  1rem auto;
+  width: 90px;
+  height: 60px;
+  background-color: rgb(24,187,74);
+  color: #ffffff;
+}
+.section_calendar{
+  background-color: rgb(255, 167, 251);
+  background-color: #ffffff;
+}
+
+.subtitle{
+  width: 100%;
+  text-align: start;
+  font-weight: bold;
+  background-color: #ffffff;
+}
+
+/* --calendar.css */
+
+body {
+
+}
+
+#loading {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#calendar {
+  max-width: 300px;
+  margin: 5px auto;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 0.345rem;
+}

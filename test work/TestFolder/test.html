@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="test.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>JSONObject와 JSONArrayTest</title>
+
+
+<script type="text/javascript">
+	function testObj(){
+		//alert("jsonobject test");
+		var per={name:"아이유", age:29};// 자바스크립트 객체 (JSON: Javascript Object Notation)
+		alert(per.name+ " " + per.age+"세");
+	}
+	function testArray(){
+		var pa=["ioc", "aop", "springmvc"]; //자바스크립트 배열 객체 ( JSON Array )
+		for (var i = 0; i < pa.length; i++) {
+			alert(pa[i]);
+		}
+	}
+	//자바스크립트 생성자
+	function Person(name, age){
+		this.name=name;
+		this.age=age;
+	}
+	function testPerson(){
+		//자바스크립트 생성자를 이용해 객체 생성
+		var p=new Person("원빈", 39);
+		alert(p.name);
+		alert(p.age);
+	}
+	
+	function myTest(){
+		let company={name:"백의민족", age:"2015년", country:"대한민국"}
+		alert("회사명 : " + company.name  + ", 설립년도 : " +company.age+ ", 국가 : " +company.country)
+	}
+
+	function initData(){
+		[
+		{
+			"userId": 1,
+			"id": 1,
+			"title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+			"body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+		},
+		{
+			"userId": 1,
+			"id": 2,
+			"title": "qui est esse",
+			"body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+		}]
+	}
+
+	$(function(){
+		getData();
+	});
+
+	function getData(){
+		const url='http://127.0.0.1:5500/TestFolder/test.html';
+	}
+
+
+
+	function Change(){
+		var change = document.getElementsByName('아동돌봄');
+		change.values="성인돌봄";
+	}
+
+
+</script>
+</head>
+<body>
+<div class="container">
+<input type="button" value="JSONObject Test" onclick="testObj()">
+<input type="button" value="testArray Test" onclick="testArray()">
+<input type="button" value="JavascriptObject" onclick="testPerson()">
+<input type="button" value="JSONObject my" onclick="myTest()">
+<!-- <input type="button" value="JSONTest my" onclick="jsonTest()"> -->
+	<table class="list">
+		<thead>
+			<tr>
+				<td class="th_time">예정시간</td>
+				<td class="th_name">상세서비스명</td>
+				<td class="th_status">상태</td>
+				<td class="th_detail">상세보기</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><span>10월 1일 </span><br>13시</td>
+				<td name="아동돌봄">아동돌봄</td>
+				<td>예정</td>
+				<td class="detail">
+					<button type="button" class="btn btn-primary" onclick="Change()">
+						상세
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td><span>10월 1일 </span><br>13시</td>
+				<td>아동돌봄</td>
+				<td>예정</td>
+				<td class="detail">
+					<button type="button" class="btn btn-primary" onclick="location.href='app-user-info-detail.html'">
+						상세
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td><span>10월 1일 </span><br>13시</td>
+				<td>아동돌봄</td>
+				<td>예정</td>
+				<td class="detail">
+					<button type="button" class="btn btn-primary" onclick="location.href='app-user-info-detail.html'">
+						상세
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td><span>10월 1일</span><br>13시</td>
+				<td>아동돌봄</td>
+				<td>예정</td>
+				<td class="detail">
+					<button type="button" class="btn btn-primary" onclick="location.href='app-user-info-detail.html'">
+						상세
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td><span>10월 1일</span><br>13시</td>
+				<td>아동돌봄</td>
+				<td>예정</td>
+				<td class="detail">
+					<button type="button" class="btn btn-primary" onclick="location.href='app-user-info-detail.html'">
+						상세
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>  
+</div>
+</body>
+</html>

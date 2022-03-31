@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="item">
+		<img src="img/flower1.jpg" alt="" id="cover">
+	</div>
+    
+    <script>
+       // == part5. 이벤트 ============
+
+        var coverImage = document.querySelector("#cover");
+		coverImage.ondblclick = function() {
+			alert('눌렀습니다');
+		};
+		coverImage.onclick = function() {
+			coverImage.style.border = "5px black solid";
+		};
+		coverImage.onmouseup = function() {
+			coverImage.style.border = "";
+		};
+        coverImage.onkeypress = function(e) {
+            coverImage.style.border = "5px black solid";
+		};
+
+        (
+            function () {
+                addEventListener('keydown' ,() =>{
+                    if (window.event.keyCode == 13){
+                        console.log("엔터 키 누름")
+                    }
+                    if (window.event.keyCode == 8){
+                        console.log("백스페이스 누름")
+                    }
+                    if (window.event.keyCode == 83){
+                        console.log("s 누름")
+                    }
+                })
+            }()
+        );
+        // https://blog.lael.be/post/75 키코드 레퍼런스 테이블
+
+        
+
+        /*
+            마우스이벤트
+            click
+            dblclick
+            mousedown 사용자가 요소위에서 마우스버튼을 누르는동안
+            mouseup 사용자가 요소위에서 마우스버튼을 뗄 떼
+            mousemove
+            mouseover 포인터가 요소위로 옮겨질 때
+            mouseout 포인터가 요소위를 벗어날 때
+
+
+            키 이벤트
+            keypress   키 누르면(계속)
+            keydown   키 누르면(1회)
+            keyup       키에서 손 뗄떼
+
+            문서로딩 이벤트 
+            abort 문서가 완전히 로딩되기 전에 불러오기를 멈췄을때 이벤트 발생
+            error 문서가 정확히 로딩안됬을때
+            load 문서가 로딩되면
+            resize 문서화면이 바뀌면
+            scroll 스크롤되면
+            unload 문서를 벗어나면
+
+            blur
+            change
+            focus
+            reset
+            submit
+        */
+    </script>
+</body>
+</html>

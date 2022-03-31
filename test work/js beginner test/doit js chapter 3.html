@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input class="input" name="input" placeholder="이름을 입력하세요">
+    <button type="button" onclick="nameShow()">이름 확인하기</button>
+    <button type="button" id="result" onclick="calc()">나이 버튼</button>
+    <h1 id = "heading">
+        클릭하면 색을 바꿀것임
+    </h1>
+    </p>
+    <script>
+    // == part3. 변수 , 자료형 ,연산자 ============
+
+        function nameShow(){
+            console.log('clicked')
+            let name = document.querySelector('.input').value;
+            //***************************************// 
+            document.write(name)
+        }
+
+        // function calc(){
+        //     let currentYear = 2021;
+        //     let birthYear = 2019;
+        //     let age;
+        //     age = currentYear - birthYear +1;
+        //     document.getElementById('result').innerHTML = "당신의 나이는 " + age + "세 입니다."
+        // }
+
+        // 정보 : let으로 선언한 변수는 {}로 묶은 범위를 벗어나면 사용할 수 없다.
+        // 정보 : undefined = 자료형이 정의되지 않았을때의 상태, null = 처음에 할당 된 값이 더는 유효하지 않음.
+
+        // 배열
+        var season = ["봄","봄","봄","겨울"]
+        console.log(season[3])
+
+        // 객체(Object)
+        var park = {
+            firstName : "Ji Sung",
+            lastName : "Park",
+            age:40,
+            address:"Manchester"
+        }
+        console.log(park)
+
+        //정보 : weakType = JS /  strongType = C, Java / TypeScript는 이름에서 알수 있듯 JS에 strongType을 추가한것
+
+
+        //연산자 (증감)
+        var a = 10;
+        var b = a++ +5;
+        var c = b--;
+        console.log(a)    //11 b연산자에 의해 1증가
+        console.log(b)    //14 c연산자에 의해 -1
+        console.log(c)    //15 a+5
+
+        var i = 1
+        var j = i++ +1;
+        var k = ++i + 1;
+        console.log(i)    
+        console.log(j)    
+        console.log(k)   
+        
+        var x = 10;
+        console.log(x);
+        x += 10;
+        console.log(x);
+        x *= 20;
+        console.log(x);
+
+        var y = 'zz';
+        console.log(y);
+        console.log(typeof(y))
+        y += 'zz';
+        console.log(y);
+        y *= 'zz';
+        console.log(y +" NaN은 Not a Number라는 뜻");
+        // not a number NaN
+        console.log(typeof(y))
+
+        var numVar = 100;
+        var strVar = "50"
+        console.log(numVar + strVar)  //덧셈은 문자를 더하는걸로 처리되는데 나머지 연산은 숫자형으로 알아서 연산
+        console.log(numVar - strVar)
+        console.log(numVar * strVar)
+        console.log(numVar / strVar)
+        console.log(numVar % strVar)
+
+        var strVar2 = strVar.toString()
+        console.log("강제 스트링처리해봄 결과는? : " + typeof(strVar2))
+        console.log(numVar + strVar2)  
+        console.log(numVar - strVar2)
+        console.log(numVar * strVar2)
+        console.log(numVar / strVar2)
+        console.log(numVar % strVar2)
+
+        // == , ===  의 차이
+        // 차이점 : ==는 자동으로 자료형을 변환하여 비교함, ===는 자료형의 변환을 허용하지 않음
+        console.log(10 == "10")
+        console.log(10 === "10")
+
+        //문자를 비교 연산시에는 아스키코드값을 비교한다
+        console.log("a" > "A")  // ASCII code값 a = 97 , A=65
+        console.log("a" < "A")  // ASCII code값 a = 97 , A=65
+        console.log("a" != "a")  
+
+        
+
+
+    </script>
+</body>
+</html>

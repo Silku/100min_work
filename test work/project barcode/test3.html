@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button onclick="getUser()">클릭</button>
+    <div id="userInfo"></div>
+
+    <script>
+        function getUser() {
+            
+            const config = {
+            method: "get"
+            };
+            
+            fetch("https://jsonplaceholder.typicode.com/users/2", config)
+            .then(response => response.json())
+            .then(data => {
+            const name = document.createElement("div");
+            const email = document.createElement("div");
+            const phone = document.createElement("div");
+            name.textContent = data.name;
+            email.textContent = data.email;
+            phone.textContent = data.phone;
+            const userInfo = document.getElementById("userInfo");
+            userInfo.appendChild(name);
+            userInfo.appendChild(email);
+            userInfo.appendChild(phone);
+            })
+            .catch(error => console.log(error));
+        }
+
+        if (data == 'input'){
+            $.ajax({
+                type:'post',
+                url:'data2',
+                data: {barcode : $('#barcode').val()},
+                contentType:"application/json",
+                success : function(data){
+                    console.log('if문에서 ajax 통신 성공')
+                    const music = new Audio('sound/ok.mp3');
+                    music.play();
+
+                    $( '#barcodeList').empty();
+
+                    let res = JSON.parse(data);
+                      console.log(res);
+                        str='<tr>';
+                  $.each(res , function(i){
+                        str += '<TD>' + res[i].no + '</TD><TD>' + res[i].data + '</TD><TD>' + res[i].status + '</TD><TD>' + res[i].regat + '</TD>';
+                        str += '</TR>';
+                  });
+                    $("#barcodeList").append(str);
+
+                }
+                ,error:function(){
+                  console.log('if문에서 ajax 에러발생')
+                }       
+            });
+        }
+
+
+    </script>
+  </body>
+</html>
