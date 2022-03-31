@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="history.back()">뒤로가기 </button>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        	
+        let result = getParameterByName("value")
+        let result2 = getParameterByName("child")
+        console.log(result)
+        console.log(result2)
+        let go = (result ? result:result2)
+        location.href=go
+        // console.log(3>2? true:false)
+    </script>
+    <!-- <script>
+
+        var getParameters = function (paramName) {
+        // 리턴값을 위한 변수 선언
+            var returnValue;
+            
+            // 현재 URL 가져오기
+            var url = location.href;
+            
+            // get 파라미터 값을 가져올 수 있는 ? 를 기점으로 slice 한 후 split 으로 나눔
+            var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+            
+            // 나누어진 값의 비교를 통해 paramName 으로 요청된 데이터의 값만 return
+            for (var i = 0; i < parameters.length; i++) {
+                var varName = parameters[i].split('=')[0];
+                if (varName.toUpperCase() == paramName.toUpperCase()) {
+                returnValue = parameters[i].split('=')[1];
+                return decodeURIComponent(returnValue);
+                }
+            }
+        };
+        
+        console.log(getParameters('value'));
+        // alert(getParameters('value'));
+        </script> -->
+
+
+
+
+        <!-- <form> 태그 대신 자바스크립트에서 폼을 전송 할 수 있습니다.
+
+            / /form
+            
+            var form = document.createElement(“form”);      // form생성
+            
+            form.setAttribute(“method”,”post”);                    // method 설정
+            form.setAttribute(“action”,”/etc/cs/view”);       // action 설정
+            
+            document.body.appendChild(form);                     //body 태그에 append 폼 추가
+            
+            //input
+            var input_id = document.createElement(“input”);
+            
+            input_id.setAttribute(“type”, “hidden”);
+            
+            input_id.setAttribute(“name”, “id”);      //name 속성 지정
+            input_id.setAttribute(“value”, id);        //value 값 설정
+            
+            form.appendChild(input_id);                 //from 태그에 추가
+            
+            //폼전송
+            
+            form.submit(); -->
+</body>
+</html>
