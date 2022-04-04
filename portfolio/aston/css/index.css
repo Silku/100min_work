@@ -44,7 +44,7 @@ p{
 
 html{
     overflow: hidden;
-    background-color: rgb(17, 87, 64);
+    /* background-color: rgb(17, 87, 64); */
 }
 
 
@@ -555,6 +555,7 @@ section .title_underline{
 .section_3 .right_side{
     position: relative;
     width: 100%;
+    background-color: #fff;
     /* background-color: red; */
 }
 .section_3 .item_container{

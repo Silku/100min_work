@@ -1,0 +1,57 @@
+<div id="count">0</div>
+<button id="up">+1</button>
+<button id="down">-1</button>
+<script>
+/*
+|| method 1 : 기본 방법
+  var count = 0;
+  var counter = document.querySelector('#count');
+  document.querySelector('#up').addEventListener('click', function() {
+    count++;
+    // counter.textContent = count; // 중복됨
+  });
+  document.querySelector('#down').addEventListener('click', function() {
+    count--;
+    // counter.textContent = count; // 중복됨
+  });
+*/
+
+/*
+  || method 2 : getter, setter 사용하기
+  var count = {};
+    Object.defineProperty(count, 'number', {
+    get: function() {
+        return this._num || 0;
+    },
+    set: function(num) {
+        this._num = num;
+        console.log(this._num); // 이렇게 일괄적으로 디버깅 가능.
+        document.querySelector('#count').textContent = this._num; // 중복 제거
+    },
+    });
+    document.querySelector('#up').addEventListener('click', function() {
+    count.number++;
+    });
+    document.querySelector('#down').addEventListener('click', function() {
+    count.number--;
+    });
+    */
+    const count = {
+        get number() {
+            return this._num || 0;
+        },
+        set number(num) {
+            this._num = num;
+            console.log(num); // 이렇게 일괄적으로 디버깅 가능.
+            document.querySelector('#count').textContent = this._num;
+        }
+    };
+
+    document.querySelector('#up').addEventListener('click', () => {
+        count.number++;
+    });
+    document.querySelector('#down').addEventListener('click', () => {
+        count.number--;
+    });
+
+</script>

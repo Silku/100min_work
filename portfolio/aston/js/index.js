@@ -7,106 +7,23 @@ window.addEventListener("wheel", function(e){
     e.preventDefault();
 },{passive : false});
 
-var mHtml = $("html");
-var page = 1;
-mHtml.animate({scrollTop : 0}, 1000);
-
-
-$(window).on("wheel", function(e) {
-    // 스크롤 애니메이팅 중일때 휠 애니메이션 리턴
-    if(mHtml.is(":animated")) return;
-    console.log("PageIdx : " + (page))
-    // deltaY > 0 휠을 아래로 스크롤할때 , 
-    // deltaY는 마우스휠을 어느방향으로 얼만큼 굴렸는지에 대한 값,
-    // 양수이면 아래쪽, 음수이면 위쪽으로 굴린 상태.
-
-    if(page == 3){
-        let clientWidth = document.documentElement.clientWidth;
-        let scrollWidth = document.documentElement.scrollWidth;
-        let widthResult = ((clientWidth/scrollWidth)*100)
-        // console.log(clientWidth + "클라위드")
-        let wMin = (clientWidth-clientWidth);
-        let wMax = (scrollWidth-clientWidth);
-
-        let pageTheeeScrollIdx = 0;
-        
-        // console.log(wMin)
-        // console.log(wMax)
-        $(window).on("wheel", function(e) {
-            if(mHtml.is(":animated")) return;
-            if(e.originalEvent.deltaY > 0) {
-                section3.style.transition = "2s ease-in-out";
-                section3.style.transform = "translate3d(-" + wMax + "px, 0, 0)";
-                pageTheeeScrollIdx = clientWidth+wMax;
-                console.log(pageTheeeScrollIdx)
-            }else if(e.originalEvent.deltaY < 0) {
-                section3.style.transform = "translate3d("+wMin+"px, 0, 0)";
-                // pageTheeeScrollIdx = wMin;
-            }
-        })
-        return;
-    }
+let mHtml = $("html");
+let page = 1;
+let pageX = 1;
 
 
 
-    if(e.originalEvent.deltaY > 0) {
 
-    if(page == 7) return;
-    // if(page == 3) return;
-    page++;
-
-    }else if(e.originalEvent.deltaY < 0) {
-    // deltaY < 0 휠을 위로 스크롤할때
-        if(page == 1) return;
-        // if(page == 3) return;
-        page--;
-    }
-
-    pageMove(page);
-    // 페이지 높이만큼 스크롤
-    var posTop =(page-1) * $(window).height();
-    mHtml.animate({scrollTop : posTop});
-
-
-    // function pageThreeScrollEvent(page){
-    //     if(page==3){
-    //         window.addEventListener('wheel', function(e){
-    //             e.preventDefault();
-    //             e.stopPropagation();
-    //         },{passive : false})
-    //         $(window).on("wheel", function(e) {
-    //             if(e.originalEvent.deltaY > 0) {
-    //                 section3.style.transition = "2s ease-in-out";
-    //                 section3.style.transform = "translate3d(-650px, 0, 0)";
-    //             }else if(e.originalEvent.deltaY < 0) {
-    //                 section3.style.transform = "translate3d(650px, 0, 0)";
-    //             }
-    //         })
-    //         if(mHtml.is(":animated")) return;
-    //     }
-    // }
-
-
-    
-    // console.log(posTop)
-    let windowScrollTop = document.documentElement.scrollTop;
-    let clientHeight = document.documentElement.clientHeight; //현재 화면 높이
-    let scrollHeight = document.documentElement.scrollHeight; //총 스크롤 높이
-    let clientWidth = document.documentElement.clientWidth;
-    let scrollWidth = document.documentElement.scrollWidth;
-    // let scrolled = (windowScrollTop / height) * 100;
-    // progressGuage.style.height= (posTop/(clientHeight)*100)+"%"
-    
-    // console.log()
-    // console.log($(window).height())
-    // console.log(clientHeight)
-    // console.log(scrollHeight)
-    // console.log("포스탑" + (posTop/scrollHeight));
-
-    // 가로 게이지 쓸때 참고
-    // progressGuage.style.height= ((posTop/scrollHeight)*100)+"%"
-})
-
+// const count = {
+//     get number(){
+//         return this._num || 0;
+//     }
+//     set number(num) {
+//         this._num = num;
+//         console.log(num); // 이렇게 일괄적으로 디버깅 가능.
+//         document.querySelector('#count').textContent = this._num;
+//     }
+// }
 let section3 = document.querySelector('.section_3');
 
 let clientHeight = document.documentElement.clientHeight;
@@ -115,13 +32,119 @@ let clientWidth = document.documentElement.clientWidth;
 let scrollWidth = document.documentElement.scrollWidth;
 let html = document.querySelector('html');
 
-console.log("클라 가로 : " + clientWidth)
-html.addEventListener('change', function(){
-    console.log("바뀜")
-})
-console.log("스크롤 가로 : " + scrollWidth)
-console.log("클라 세로 : " + clientHeight)
-console.log("스크롤 세로 : " + scrollHeight)
+// console.log("클라 가로 : " + clientWidth)
+// console.log("스크롤 가로 : " + scrollWidth)
+// console.log("클라 세로 : " + clientHeight)
+// console.log("스크롤 세로 : " + scrollHeight)
+
+let wMin = (clientWidth-clientWidth);
+let wMax = (scrollWidth-clientWidth);
+
+// mHtml.animate({scrollTop : 0}, 1000);
+// mHtml.animate({scrollLeft : 0}, 1000);
+
+
+function check(){
+    console.log("페이지 확인 : " + page)
+    return page
+}
+
+// scroll(page, pageX);
+
+// function scroll(page, pageX){
+//     $(window).on("wheel", function(e) {
+        
+//     })
+// }
+
+scrollMoveY(page, pageX)
+
+function scrollMoveY(page, pageX){
+    $(window).on("wheel", function(e) {
+        // 스크롤 애니메이팅 중일때 휠 애니메이션 리턴
+        if(mHtml.is(":animated")) return;
+        // deltaY > 0 휠을 아래로 스크롤할때 , 
+        // deltaY는 마우스휠을 어느방향으로 얼만큼 굴렸는지에 대한 값,
+        // 양수이면 아래쪽, 음수이면 위쪽으로 굴린 상태.
+        if(e.originalEvent.deltaY > 0) {
+            if(page >  6) return;
+            if(page != 3){
+                page++;
+            }
+            if(page ==3){
+                scrollMoveX(page, pageX)
+            }
+        }else if(e.originalEvent.deltaY < 0) {
+        // deltaY < 0 휠을 위로 스크롤할때
+            if(page < 2) return;
+            if(page !=3){
+                page--;
+            }
+            if(page == 3 ){
+                scrollMoveX(page, pageX)
+            }
+        }
+        //
+        pageMove(page);
+        // 페이지 높이만큼 스크롤
+        var posTop =(page-1) * $(window).height();
+        mHtml.animate({scrollTop : posTop}); 
+        console.log("PageIdx : " + (page))
+    })
+}
+
+
+
+
+function scrollMoveX(page, pageX){
+    if(mHtml.is(":animated")) return;
+    $(window).on("wheel", function(e) {
+        // deltaY > 0 휠을 아래로 스크롤할때 , 
+        // deltaY는 마우스휠을 어느방향으로 얼만큼 굴렸는지에 대한 값,
+        // 양수이면 아래쪽, 음수이면 위쪽으로 굴린 상태.
+        if(e.originalEvent.deltaY > 0) {
+            if(pageX >  1) return;
+            pageX++
+        }else if(e.originalEvent.deltaY < 0) {
+            if(pageX <  2) return;
+            pageX--
+        }
+        // 페이지 가로만큼 스크롤
+        var posLeft =(pageX-1) * $(window).width();
+        mHtml.animate({scrollLeft : posLeft}); 
+        console.log("Page-X-Idx : " + pageX)
+        console.log(page)   
+        // let ScrollX = (pageX-1)*wMax;
+        // section3.style.transition = "2s ease-in-out";
+        // section3.style.transform = "translate3d(-" + ScrollX + "px, 0, 0)";
+    })   
+}
+
+
+
+
+// if(page == 3){
+//     $(window).on("wheel", function(e) {
+//         if(e.originalEvent.deltaY > 0) {
+//             scrollEvent() return;
+//             pageX++;
+//             ScrollMoveX(pageX);
+//         }else if(e.originalEvent.deltaY < 0) {
+//             scrollEvent() return;
+//             pageX == 0;
+//             ScrollMoveX(pageX);
+//         }
+//     }
+// }
+
+// function ScrollMoveX(pageX){
+                
+//     let ScrollX = (pageX-1)*wMax;
+//     section3.style.transition = "2s ease-in-out";
+//     section3.style.transform = "translate3d(-" + ScrollX + "px, 0, 0)";
+// }
+// console.log("PageXIdx : " + (pageX))
+
 
 
 // 사이드 프로그레스바
@@ -158,25 +181,6 @@ console.log("스크롤 세로 : " + scrollHeight)
             currentCircleIdx.classList.add("on")
             currentProgressIdx.classList.add("on")
         }
-        // currentPageNum.classList.remove("on")
-        // currentCircleIdx.classList.remove("on")
-
-        // for(i=0;  i< n.length; i++){
-        //     if(i%2 != 0){
-        //         // n[i].classList.add("on")
-        //         // console.log(n[i])
-        //         console.log((n)[i])
-        //         // console.log(page)
-        //         // n[i].style.display="none"
-        //         // n[i].style.transform= "translateY(-100%)";
-        //         // n[i].style.transform="translateY(0%)";
-        //     }
-        // }
-        // for(i=0;  i< n.length; i++){
-        //     if(i%2 != 0){
-        //         // console.log(c[i])
-        //     }
-        // }
     }
 
 
