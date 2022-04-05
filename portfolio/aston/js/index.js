@@ -1,3 +1,6 @@
+let screen = document.querySelector('#main_screen');
+let parallax = new Parallax(screen);
+
 // 새로고침시 스크롤 복원안함
 history.scrollRestoration = "manual"
 
@@ -8,10 +11,8 @@ window.addEventListener("wheel", function(e){
 },{passive : false});
 
 let mHtml = $("html");
-let page = 1;
-let pageX = 1;
-
-
+let page;
+// let pageX = 1;
 
 
 // const count = {
@@ -43,82 +44,127 @@ let wMax = (scrollWidth-clientWidth);
 // mHtml.animate({scrollTop : 0}, 1000);
 // mHtml.animate({scrollLeft : 0}, 1000);
 
+(function scrollEvent(){
+    let stateIdx;
+    let pageX;
+    let flag = true;
+    // let pageX;
+    $(window).on("wheel", function(e) {  
+        if(stateIdx == null){
+            stateIdx = 1
+        }
+        if(mHtml.is(":animated")) return; 
 
-function check(){
-    console.log("페이지 확인 : " + page)
-    return page
+        if(e.originalEvent.deltaY > 0) {
+            if(stateIdx >  6) return;
+            if(flag == true && stateIdx <3){
+                scrollMoveY(++stateIdx, flag)
+                if(stateIdx != 3){
+                    flag = true
+                }else if(stateIdx ==3){
+                    flag = false
+                    scrollMoveX(stateIdx, pageX)
+                }
+            }
+            
+        }else if(e.originalEvent.deltaY < 0) {
+            if(stateIdx < 2) return;
+            scrollMoveY(--stateIdx, flag)
+            if(stateIdx == 3){
+                flag = true;
+                return flag
+            }
+        } 
+        // console.log("PageIdx : " + page)
+        console.log("flag : " + flag)
+        console.log("Page-X-Idx : " +"pageX")
+        console.log("stateIdx : " + stateIdx)
+        console.log("끝날떄 " + flag)
+        return flag
+    })
+}())
+
+function scrollMoveX(stateIdx , pageX){
+        if(mHtml.is(":animated")) return;
+        page = pageX;
+        // 페이지 가로만큼 스크롤 
+        if(page < 1 || page > 2) return;
+        var posLeft =(page-1) * $(window).width();
+        mHtml.animate({scrollLeft : posLeft}); 
+        // console.log("Page-X-Idx : " + pageX)
+        // console.log(page)
+        pageX = page
+        return  pageX;   
 }
 
-// scroll(page, pageX);
-
-// function scroll(page, pageX){
-//     $(window).on("wheel", function(e) {
-        
-//     })
-// }
-
-scrollMoveY(page, pageX)
-
-function scrollMoveY(page, pageX){
-    $(window).on("wheel", function(e) {
-        // 스크롤 애니메이팅 중일때 휠 애니메이션 리턴
-        if(mHtml.is(":animated")) return;
-        // deltaY > 0 휠을 아래로 스크롤할때 , 
-        // deltaY는 마우스휠을 어느방향으로 얼만큼 굴렸는지에 대한 값,
-        // 양수이면 아래쪽, 음수이면 위쪽으로 굴린 상태.
-        if(e.originalEvent.deltaY > 0) {
-            if(page >  6) return;
-            if(page != 3){
-                page++;
-            }
-            if(page ==3){
-                scrollMoveX(page, pageX)
-            }
-        }else if(e.originalEvent.deltaY < 0) {
-        // deltaY < 0 휠을 위로 스크롤할때
-            if(page < 2) return;
-            if(page !=3){
-                page--;
-            }
-            if(page == 3 ){
-                scrollMoveX(page, pageX)
-            }
-        }
-        //
+function scrollMoveY(stateIdx, flag){
+        page = stateIdx;
         pageMove(page);
         // 페이지 높이만큼 스크롤
         var posTop =(page-1) * $(window).height();
         mHtml.animate({scrollTop : posTop}); 
-        console.log("PageIdx : " + (page))
-    })
-}
-
-
-
-
-function scrollMoveX(page, pageX){
-    if(mHtml.is(":animated")) return;
-    $(window).on("wheel", function(e) {
-        // deltaY > 0 휠을 아래로 스크롤할때 , 
-        // deltaY는 마우스휠을 어느방향으로 얼만큼 굴렸는지에 대한 값,
-        // 양수이면 아래쪽, 음수이면 위쪽으로 굴린 상태.
-        if(e.originalEvent.deltaY > 0) {
-            if(pageX >  1) return;
-            pageX++
-        }else if(e.originalEvent.deltaY < 0) {
-            if(pageX <  2) return;
-            pageX--
+        if(stateIdx == 3){
+            // flag = false
+            console.log("현재 3페이지" + stateIdx)
+            console.log("현재 3플래그" + flag)
         }
-        // 페이지 가로만큼 스크롤
-        var posLeft =(pageX-1) * $(window).width();
-        mHtml.animate({scrollLeft : posLeft}); 
-        console.log("Page-X-Idx : " + pageX)
-        console.log(page)   
-        // let ScrollX = (pageX-1)*wMax;
-        // section3.style.transition = "2s ease-in-out";
-        // section3.style.transform = "translate3d(-" + ScrollX + "px, 0, 0)";
-    })   
+    return stateIdx, flag;
 }
+
+// function scrollMoveY(stateIdx){
+//     $(window).on("wheel", function(e) {
+//         // 스크롤 애니메이팅 중일때 휠 애니메이션 리턴
+//         if(mHtml.is(":animated")) return;
+//         // deltaY > 0 휠을 아래로 스크롤할때 , 
+//         // deltaY는 마우스휠을 어느방향으로 얼만큼 굴렸는지에 대한 값,
+//         // 양수이면 아래쪽, 음수이면 위쪽으로 굴린 상태.
+//         if(e.originalEvent.deltaY > 0) {
+//             if(stateIdx >  6) return;
+//                 stateIdx++;
+//         }else if(e.originalEvent.deltaY < 0) {
+//         // deltaY < 0 휠을 위로 스크롤할때
+//             if(stateIdx < 2) return;
+//                 stateIdx--;
+//         }
+//         page = stateIdx;
+//         //
+//         pageMove(page);
+//         // 페이지 높이만큼 스크롤
+//         var posTop =(page-1) * $(window).height();
+//         mHtml.animate({scrollTop : posTop}); 
+//         console.log("PageIdx : " + (page))
+//         console.log(stateIdx)
+        
+//     })
+//     return stateIdx;
+// }
+
+
+
+
+// function scrollMoveX(){
+//     if(mHtml.is(":animated")) return;
+//     $(window).on("wheel", function(e) {
+//         // deltaY > 0 휠을 아래로 스크롤할때 , 
+//         // deltaY는 마우스휠을 어느방향으로 얼만큼 굴렸는지에 대한 값,
+//         // 양수이면 아래쪽, 음수이면 위쪽으로 굴린 상태.
+//         if(e.originalEvent.deltaY > 0) {
+//             if(pageX >  1) return;
+//             pageX++
+//         }else if(e.originalEvent.deltaY < 0) {
+//             if(pageX <  2) return;
+//             pageX--
+//         }
+//         // 페이지 가로만큼 스크롤
+//         var posLeft =(pageX-1) * $(window).width();
+//         mHtml.animate({scrollLeft : posLeft}); 
+//         console.log("Page-X-Idx : " + pageX)
+//         console.log(page)   
+//         // let ScrollX = (pageX-1)*wMax;
+//         // section3.style.transition = "2s ease-in-out";
+//         // section3.style.transform = "translate3d(-" + ScrollX + "px, 0, 0)";
+//     })   
+// }
 
 
 

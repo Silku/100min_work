@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  참고블로그 https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Store/#_3-%E1%84%8B%E1%85%A7%E1%84%85%E1%85%A5-%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B4-observer-%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5
+        
+        // == 1. state 개념 , 옵저버패턴 == 
+        // // Store를 생성한다.
+        // const store = new Store("음?");
+
+        // // 컴포넌트를 생성한다.
+        // const component1 = new Component({ subscribe: [store] });
+        // const component2 = new Component({ subscribe: [store] });
+
+        // // 컴포넌트가 store를 구독한다.
+        // component1.subscribe(store); // a + b = ${store.state.a + store.state.b}
+        // component2.subscribe(store); // a * b = ${store.state.a * store.state.b}
+
+        // // store의 state를 변경한다.
+        // store.setState({
+        // a: 100,
+        // b: 200,
+        // });
+
+        // // store가 변경되었음을 알린다.
+        // store.notify();
+
+
+        // ==2. defineProperty == 
+        // let a = 10;
+        // const state = {};
+        // Object.defineProperty(state, 'a', {
+        // get () {
+        //     console.log(`현재 a의 값은 ${a} 입니다.`)
+        //     return a;
+        // },
+        // set (value) {
+        //     a = value;
+        //     console.log(`변경된 a의 값은 ${a} 입니다.`)
+        // }
+        // });
+
+        // console.log(`state.a = ${state.a}`);
+
+        const state = {
+            a: 10,
+            b: 20,
+        };
+
+        const stateKeys = Object.keys(state);
+        const observer = () => console.log(`a + b = ${state.a + state.b}`);
+
+        for (const key of stateKeys) {
+        let _value = state[key];
+        Object.defineProperty(state, key, {
+            get () {
+            return _value;
+            },
+            set (value) {
+            _value = value;
+            observer();
+            }
+        })
+        }
+
+        observer();
+        state.a = 100;
+        state.b = 200;
+        state.a = 100;
+
+    </script>
+</body>
+</html>
